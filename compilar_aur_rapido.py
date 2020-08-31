@@ -5,18 +5,14 @@ from time import sleep
 def qual_gerenciador(gerenciador=''):
     file = open('/home/mirai/PycharmProjects/ScriptArch/testa/verificar.log', 'r')
     file.seek(0)
-    sleep(3)
     if gerenciador in file.read():
-        print(f'{gerenciador} instalado')
-        print('aplicando as conigurações')
         sleep(5)
+        print(f'ok')
     else:
-        print(f"""{gerenciador} nâo instalado
-preparando para instala {gerenciador}""")
-        sleep(2)
-        os.system('sudo pacman -S --noconfirm ' + gerenciador)
-        print('aplicando as conigurações')
         sleep(5)
+        print(f"{gerenciador} nâo instalado")
+        print('preparando para instala {gerenciador}')
+        os.system('sudo pacman -S --noconfirm ' + gerenciador)
     file.close()
 
 
@@ -28,8 +24,14 @@ def file_open(enter='Vazio', format=True):
     file.write(enter)
     file.close()
 
+def define_make(core='0'):
+    if core == '0':
+        file_open('MAKEFLAGS="-j$(($(nproc)+1))"')
+    else:
+        file_open(enter='MAKEFLAGS="-j'+ core, format=True)
 
-def file_finally():
+
+def file_finally(core='0'):
     file_open(enter="""
 
 # Other common tools:
@@ -57,8 +59,14 @@ CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt"
 CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt"
 LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
 #RUSTFLAGS="-C opt-level=2"
-#-- Make Flags: change this for DistCC/SMP systems
-MAKEFLAGS="-j5"
+#-- Make Flags: change this for DistCC/SMP systems 
+""", format=True)
+
+
+    define_make(core=core)
+
+
+    file_open("""
 #-- Debugging flags
 DEBUG_CFLAGS="-g -fvar-tracking-assignments"
 DEBUG_CXXFLAGS="-g -fvar-tracking-assignments"
@@ -192,11 +200,16 @@ while True:
               'https::/usr/bin/curl -gqb "" -fLC - --retry 3 --retry-delay 3 -o %o %u'
               'rsync::/usr/bin/rsync --no-motd -z %u %o'
               'scp::/usr/bin/scp -C %u %o') """, format=True)
-        print(f'Verificando se o gerenciador de download esta instalado...')
-        sleep(2)
+        print(f'Verificando se o gerenciador de download esta instalado...', end=" ")
         qual_gerenciador(gerenciador='curl')
-        file_finally()
+        core = int(input("""====================================
+Digite o numero de cores do seu processador. 
+Se não sabe digite ( 0 ): """))
+        c = core + 1
+        cores = str(c)
+        file_finally(core=cores)
         break
+
     elif option == 1:
         file_open(enter="""DLAGENTS=('file::/usr/bin/curl -gqC - -o %o %u'
               'ftp::/usr/bin/axel -n 5 -v -a -o %o %u'
@@ -204,11 +217,16 @@ while True:
               'https::/usr/bin/axel -n 5 -v -a -o %o %u'
               'rsync::/usr/bin/rsync --no-motd -z %u %o'
               'scp::/usr/bin/scp -C %u %o') """, format=True)
-        print('Verificando se o gerenciador de download esta instalado...')
-        sleep(2)
-        qual_gerenciador(gerenciador='axel')
-        file_finally()
+        print(f'Verificando se o gerenciador de download esta instalado...', end=" ")
+        qual_gerenciador(gerenciador='curl')
+        core = int(input("""====================================
+Digite o numero de cores do seu processador. 
+Se não sabe digite ( 0 ): """))
+        c = core + 1
+        cores = str(c)
+        file_finally(core=cores)
         break
+
     elif option == 2:
         file_open(enter="""DLAGENTS=(file::/usr/bin/aria2c --allow-overwrite=true --continue=true --file-allocation=none --log-level=error --max-tries=10 --max-connection-per-server=10 --max-concurrent-downloads=5 --max-file-not-found=5 --min-split-size=5M --no-conf --remote-time=true --summary-interval=60 --timeout=5 --dir=/ --out %o %u
               ftp::/usr/bin/aria2c --allow-overwrite=true --continue=true --file-allocation=none --log-level=error --max-tries=10 --max-connection-per-server=10 --max-concurrent-downloads=5 --max-file-not-found=5 --min-split-size=5M --no-conf --remote-time=true --summary-interval=60 --timeout=5 --dir=/ --out %o %u
@@ -216,10 +234,14 @@ while True:
               https::/usr/bin/aria2c --allow-overwrite=true --continue=true --file-allocation=none --log-level=error --max-tries=10 --max-connection-per-server=10 --max-concurrent-downloads=5 --max-file-not-found=5 --min-split-size=5M --no-conf --remote-time=true --summary-interval=60 --timeout=5 --dir=/ --out %o %u
               rsync::/usr/bin/rsync --no-motd -z %u %o
               scp::/usr/bin/scp -C %u %o)""", format=True)
-        print('Verificando se o gerenciador de download esta instalado...')
-        sleep(2)
-        qual_gerenciador(gerenciador='aria2')
-        file_finally()
+        print(f'Verificando se o gerenciador de download esta instalado...', end=" ")
+        qual_gerenciador(gerenciador='curl')
+        core = int(input("""====================================
+Digite o numero de cores do seu processador. 
+Se não sabe digite ( 0 ): """))
+        c = core + 1
+        cores = str(c)
+        file_finally(core=cores)
         break
     else:
         print('Opção INVALIDA')
