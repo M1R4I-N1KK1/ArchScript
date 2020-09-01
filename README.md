@@ -6,4 +6,4 @@ programs developed for the improvement and performance of the arch linux operati
 
 run in terminal: python compilar_aur_rapido.py
 
-version python: 3.8.5
+python version: 3.8.5
