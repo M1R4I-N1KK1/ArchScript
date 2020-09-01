@@ -3,10 +3,9 @@ from time import sleep
 
 
 def qual_gerenciador(gerenciador=''):
-    file = open('/home/mirai/PycharmProjects/ScriptArch/testa/verificar.log', 'r')
+    file = open('/tmp/verificar.log', 'r')
     file.seek(0)
     if gerenciador in file.read():
-        sleep(5)
         print(f'ok')
     else:
         sleep(5)
@@ -18,9 +17,9 @@ def qual_gerenciador(gerenciador=''):
 
 def file_open(enter='Vazio', format=True):
     if format == True:
-        file = open('/home/mirai/PycharmProjects/ScriptArch/testa/makepkg', 'a+')
+        file = open('/tmp/makepkg.conf', 'a+')
     else:
-        file = open('/home/mirai/PycharmProjects/ScriptArch/testa/makepkg', 'w+')
+        file = open('/tmp/makepkg.conf', 'w+')
     file.write(enter)
     file.close()
 
@@ -29,6 +28,15 @@ def define_make(core='0'):
         file_open('MAKEFLAGS="-j$(($(nproc)+1))"')
     else:
         file_open(enter='MAKEFLAGS="-j'+ core, format=True)
+
+
+def bakup_append():
+    bkp = os.path.isfile('/etc/makepkg.conf.bkṕ')
+    if bkp == False:
+        os.system('sudo cp /tmp/makepkg.conf /etc/makepkg.conf.bkp')
+        os.system('sudo cp /tmp/makepkg.conf /etc/makepkg.conf')
+    else:
+        os.system('sudo cp /tmp/makepkg.conf /etc/makepkg.conf')
 
 
 def file_finally(core='0'):
@@ -55,8 +63,8 @@ CHOST="x86_64-pc-linux-gnu"
 
 #-- Compiler and Linker Flags
 CPPFLAGS="-D_FORTIFY_SOURCE=2"
-CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt"
-CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt"
+CFLAGS="-march=native -O2 -pipe -fstack-protector-strong -fno-plt"
+CXXFLAGS="${CFLAGS}"
 LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
 #RUSTFLAGS="-C opt-level=2"
 #-- Make Flags: change this for DistCC/SMP systems 
@@ -66,7 +74,7 @@ LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
     define_make(core=core)
 
 
-    file_open("""
+    file_open(""""
 #-- Debugging flags
 DEBUG_CFLAGS="-g -fvar-tracking-assignments"
 DEBUG_CXXFLAGS="-g -fvar-tracking-assignments"
@@ -170,6 +178,9 @@ COMPRESSLZ=(lzip -c -f)
 PKGEXT='.pkg.tar.zst'
 SRCEXT='.src.tar.gz' """, format=True)
 
+    bakup_append()
+
+
 file_open(enter="""#!/hint/bash
 #
 # /etc/makepkg.conf
@@ -184,7 +195,7 @@ file_open(enter="""#!/hint/bash
 """, format=False)
 
 
-os.system('pacman -Q > /home/mirai/PycharmProjects/ScriptArch/testa/verificar.log && clear')
+os.system('pacman -Q > /tmp/verificar.log && clear')
 print('=-' * 21)
 print("""#          COMPILAR AUR RAPIDO           #
 #                                        #
