@@ -10,3 +10,6 @@ python version: 3.8.5
 
 # help and discussions
 Telegram Group = https://t.me/LinuxLabo
+
+# leia-me
+Versão do leia-me em pt-BR = https://github.com/M1R4I-N1KK1/ArchScript/blob/master/README-ptbr.md
