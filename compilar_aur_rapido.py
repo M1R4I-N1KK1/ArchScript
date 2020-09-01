@@ -32,7 +32,7 @@ def define_make(core='0'):
 
 def bakup_append():
     bkp = os.path.isfile('/etc/makepkg.conf.bkṕ')
-    if bkp == False:
+    if bkp == True:
         os.system('sudo cp /tmp/makepkg.conf /etc/makepkg.conf.bkp')
         os.system('sudo cp /tmp/makepkg.conf /etc/makepkg.conf')
     else:
