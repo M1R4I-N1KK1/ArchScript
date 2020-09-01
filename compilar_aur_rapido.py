@@ -10,7 +10,7 @@ def qual_gerenciador(gerenciador=''):
     else:
         sleep(5)
         print(f"{gerenciador} nâo instalado")
-        print('preparando para instala {gerenciador}')
+        print(f'preparando para instala {gerenciador}')
         os.system('sudo pacman -S --noconfirm ' + gerenciador)
     file.close()
 
@@ -196,6 +196,7 @@ file_open(enter="""#!/hint/bash
 
 
 os.system('pacman -Q > /tmp/verificar.log && clear')
+sleep(5)
 print('=-' * 21)
 print("""#          COMPILAR AUR RAPIDO           #
 #                                        #
@@ -229,7 +230,7 @@ Se não sabe digite ( 0 ): """))
               'rsync::/usr/bin/rsync --no-motd -z %u %o'
               'scp::/usr/bin/scp -C %u %o') """, format=True)
         print(f'Verificando se o gerenciador de download esta instalado...', end=" ")
-        qual_gerenciador(gerenciador='curl')
+        qual_gerenciador(gerenciador='axel')
         core = int(input("""====================================
 Digite o numero de cores do seu processador. 
 Se não sabe digite ( 0 ): """))
@@ -246,7 +247,7 @@ Se não sabe digite ( 0 ): """))
               rsync::/usr/bin/rsync --no-motd -z %u %o
               scp::/usr/bin/scp -C %u %o)""", format=True)
         print(f'Verificando se o gerenciador de download esta instalado...', end=" ")
-        qual_gerenciador(gerenciador='curl')
+        qual_gerenciador(gerenciador='aria2')
         core = int(input("""====================================
 Digite o numero de cores do seu processador. 
 Se não sabe digite ( 0 ): """))
