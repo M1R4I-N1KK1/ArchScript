@@ -1,7 +1,7 @@
 # ArchScript
 programs developed for the improvement and performance of the arch linux operating system.
 
-# RUN
+# run
 run in terminal: python compilar_aur_rapido.py
 
 # requirement
