@@ -9,9 +9,9 @@ python version: 3.8.5
 
 # changelog
 Beta 1:
-      0001 - name changed to speed aur
-      0002 - internal bugs resolved
-      0003 - language changed English
+0001 - name changed to speed aur
+0002 - internal bugs resolved
+0003 - language changed English
 
 # help and discussions
 Telegram Group = https://t.me/LinuxLabo
