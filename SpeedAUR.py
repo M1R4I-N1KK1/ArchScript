@@ -19,7 +19,7 @@ class CreatorFile:
             self.file.close()
 
     def file_write(self, enter=''):
-        self.file = open('/tmp/makepkg', 'a+')
+        self.file = open('/tmp/makepkg.conf', 'a+')
         self.file.write(enter)
         self.file.close()
 
