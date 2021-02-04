@@ -2,7 +2,7 @@
 programs developed for the improvement and performance of the arch linux operating system.
 
 # run
-run in terminal: python compilar_aur_rapido.py
+run in terminal: python SpeedAur.py
 
 # requirement
 python version: =< 3.8.4
