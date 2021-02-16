@@ -4,7 +4,7 @@ def window_manager():
 *      CHOOSE THE DONWLOAD MANAGER
 * (0) CURL ( default )
 * (1) AXEL
-* (2) ARIE2
+* (2) ARIA2
 *========================================*""")
 
 
