@@ -33,7 +33,7 @@ CHOST="x86_64-pc-linux-gnu"
 
 #-- Compiler and Linker Flags
 CPPFLAGS="-D_FORTIFY_SOURCE=2"
-CFLAGS="-march=native -O2 -pipe"
+CFLAGS="-march=generic -O2 -pipe"
 CXXFLAGS="${CFLAGS}"
 LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
 #RUSTFLAGS="-C opt-level=2"
