@@ -18,7 +18,7 @@ if option == 0:
 if option == 1:
     dl = 'axel'
 if option == 2:
-    dl = 'arie2'
+    dl = 'aria2'
 
 new_make = f.replace('MANAGER', str(manager[dl][0]))
 
