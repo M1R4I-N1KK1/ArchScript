@@ -38,7 +38,9 @@ CXXFLAGS="-march=sandybrigde -mtune=sandybrigde -O2 -pipe -fno-plt"
 LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
 #RUSTFLAGS="-C opt-level=2"
 #-- Make Flags: change this for DistCC/SMP systems
-MAKEFLAGS="-j4"
+
+CORE
+
 #-- Debugging flags
 DEBUG_CFLAGS="-g -fvar-tracking-assignments"
 DEBUG_CXXFLAGS="-g -fvar-tracking-assignments"
