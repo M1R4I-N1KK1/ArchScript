@@ -12,7 +12,7 @@ def window_core():
     print("""
 *========================================*
 *
-*   DEFINA O NÚMERO DE CORE'S DA SUA CPU
+*      SET THE PROCESSOR CORE NUMBER
 *
 *
 *========================================*""")
