@@ -39,7 +39,7 @@ LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
 #RUSTFLAGS="-C opt-level=2"
 #-- Make Flags: change this for DistCC/SMP systems
 
-CORE
+MAKEFLAGS="-jCORE"
 
 #-- Debugging flags
 DEBUG_CFLAGS="-g -fvar-tracking-assignments"
