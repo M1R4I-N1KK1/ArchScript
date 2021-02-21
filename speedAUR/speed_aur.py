@@ -11,9 +11,9 @@ def clear():
     system('clear')
 
 
-try:
-    dl = ['curl', 'axel', 'aria2']
+dl = ['curl', 'axel', 'aria2']
 
+try:
     with open(resource_path('manager.json')) as download_manager:
         manager = json.load(download_manager)
 
