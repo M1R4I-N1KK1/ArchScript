@@ -1,5 +1,6 @@
 import json
 import window
+import final_process
 from os import path, system
 
 
@@ -43,3 +44,6 @@ try:
 
 except KeyboardInterrupt:
     print('\nGoodbye!!!')
+
+confirm = str(input('apply settings [Y/n]: '))
+final_process.apply_backup(confirm)
