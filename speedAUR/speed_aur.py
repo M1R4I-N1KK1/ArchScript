@@ -12,8 +12,6 @@ def clear():
     system('clear')
 
 
-dl = ['curl', 'axel', 'aria2']
-
 try:
     with open(resource_path('manager.json')) as download_manager:
         manager = json.load(download_manager)
@@ -25,7 +23,7 @@ try:
         window.window_manager()
         option = input('choose an option: ')
         if option == '0' or option == '1' or option == '2':
-            dl = dl[int(option)]
+            dl = option
             clear()
             break
 
