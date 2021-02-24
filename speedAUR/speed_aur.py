@@ -1,3 +1,5 @@
+#!/usr/bin/python3.9
+
 import json
 import window
 import final_process
@@ -15,8 +17,11 @@ def clear():
 
 
 if '-r' in sys.argv:
-    backup_restore.restore()
-    print('backup restored.')
+    try:
+        backup_restore.restore()
+        print('backup restored.')
+    except KeyboardInterrupt:
+        pass
 
 else:
     try:
