@@ -42,8 +42,8 @@ try:
     with open(resource_path('new_make_core.conf'), 'w+') as make:
         make.write(new_make)
 
+    confirm = str(input('apply settings [Y/n]: '))
+    final_process.apply_backup(confirm)
+
 except KeyboardInterrupt:
     print('\nGoodbye!!!')
-
-confirm = str(input('apply settings [Y/n]: '))
-final_process.apply_backup(confirm)
