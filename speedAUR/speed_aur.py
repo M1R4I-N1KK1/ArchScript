@@ -33,14 +33,16 @@ else:
                 dl = option
                 clear()
                 break
-
-        while True:
-            window.window_core()
-            option_core = int(input('choose an option: '))
-            if option_core == 0:
-                option_core = 2
+        try:
+            while True:
+                window.window_core()
+                option_core = int(input('choose an option: '))
+                if option == 0:
+                    option_core = 2
+                    break
                 break
-            break
+        except ValueError:
+            option_core = 2
 
         new_make = base_make.replace('MANAGER', str(manager[dl][0])).replace('CORE', str(option_core + 1))
 
