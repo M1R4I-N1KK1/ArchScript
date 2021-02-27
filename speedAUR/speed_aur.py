@@ -32,22 +32,28 @@ else:
             base_make = base.read()
 
         while True:
+            clear()
             window.window_manager()
-            option = input('choose an option: ')
-            if option == '0' or option == '1' or option == '2':
-                dl = option
-                clear()
-                break
-        try:
-            while True:
-                window.window_core()
+            try:
+                option_download = int(input('choose an option: '))
+                if option_download in [0, 1, 2]:
+                    dl = option_download
+                    clear()
+                    break
+            except ValueError:
+                pass
+
+        while True:
+            clear()
+            window.window_core()
+            try:
                 option_core = int(input('choose an option: '))
-                if option == 0:
+                if option_core == 0:
                     option_core = 2
                     break
                 break
-        except ValueError:
-            option_core = 2
+            except ValueError:
+                pass
 
         new_make = base_make.replace('MANAGER', str(manager[dl][0])).replace('CORE', str(option_core + 1))
 
@@ -59,3 +65,4 @@ else:
 
     except KeyboardInterrupt:
         print('\nGoodbye!!!')
+        exit()
